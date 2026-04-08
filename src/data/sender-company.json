@@ -1,0 +1,16 @@
+{
+  "label": "Sending company",
+  "name": "LYRIQ",
+  "logoUrl": "https://www.lyriq.ai/images/logo.png",
+  "logoAlt": "LYRIQ logo",
+  "website": "lyriq.ai",
+  "industry": "AI infrastructure for BPOs and enterprises",
+  "contactName": "LYRIQ Growth Team",
+  "contactRole": "Proposal owner",
+  "summary": "This block is dedicated to the sender. Keep LYRIQ branding, sender context, and the value story here so it stays completely separate from recipient account data.",
+  "highlights": [
+    "Use this JSON only for sender branding and proposal ownership details.",
+    "Keep the sender summary focused on why LYRIQ is sending this proposal.",
+    "Update the logo, sender contact, and positioning here without touching target account content."
+  ]
+}

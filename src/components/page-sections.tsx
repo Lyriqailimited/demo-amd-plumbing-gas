@@ -398,6 +398,7 @@ function HeroSectionView({ section }: { section: HeroSection }) {
               {...reveal}
               className="flex h-full flex-col gap-5 rounded-[30px] border border-white/10 bg-[color:var(--page-surface)] p-5 sm:p-6"
             >
+              {/* <PartyCard party={section.sender} tone="sender" /> */}
               <PartyCard party={section.recipient} tone="recipient" />
             </motion.aside>
           </div>

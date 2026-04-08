@@ -4,7 +4,7 @@ import {
   SiteFooter,
   SiteHeader,
 } from "@/components/page-sections";
-import { PipecatWidget } from "@/components/pipecat-widget";
+import VoiceWidget from "../../VoiceWidget";
 import { getSiteContent, getThemeStyle } from "@/lib/site-content";
 
 export default function HomePage() {
@@ -23,7 +23,7 @@ export default function HomePage() {
       />
       <PageSections sections={siteContent.sections} />
       <SiteFooter footer={siteContent.footer} />
-      <PipecatWidget config={siteContent.widget} brandName={siteContent.brand.name} />
+      <VoiceWidget config={siteContent.widget} />
     </main>
   );
 }

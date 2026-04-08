@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 
-// import senderCompany from "@/data/sender-company.json";
+import senderCompany from "@/data/sender-company.json";
 import siteShell from "@/data/site-shell.json";
 import targetCompany from "@/data/target-company.json";
 import widgetContent from "@/data/widget-content.json";
@@ -28,7 +28,7 @@ export function getSiteContent() {
     brand: shell.brand,
     navigation: shell.navigation,
     footer: shell.footer,
-    theme: shell.theme,
+    theme: { ...shell.theme, ...target.theme },
     sections: [heroSection, ...(shell.sections ?? [])],
     widget: widgetContent,
   } as SiteContent;

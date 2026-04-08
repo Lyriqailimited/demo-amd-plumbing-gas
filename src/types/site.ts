@@ -190,25 +190,9 @@ export type PageSection =
   | FaqSection
   | CtaSection;
 
-export interface WidgetColors {
-  primary: string;
-  primaryHover: string;
-  accent: string;
-  endButton: string;
-  endButtonHover: string;
-  text: string;
-  subtitle: string;
-  success: string;
-  panel: string;
-  panelStrong: string;
-}
-
 export interface WidgetConfig {
-  autoOpen: boolean;
-  autoOpenDelayMs: number;
   backendUrl: string;
   assistantId: string;
-  launcherLabel: string;
   badgeText: string;
   title: string;
   subtitle: string;
@@ -222,7 +206,22 @@ export interface WidgetConfig {
   agentReadyText: string;
   disconnectedText: string;
   connectionFailedText: string;
-  colors: WidgetColors;
+  initializingMicText: string;
+  initializingDevicesText: string;
+  userTranscriptPrefix: string;
+  agentTranscriptPrefix: string;
+  logoUrl: string;
+  logoAlt: string;
+  fabAriaLabel: string;
+  scriptPath: string;
+  autoOpen: boolean;
+  autoOpenDelayMs: number;
+  primaryColor: string;
+  accentColor: string;
+  endButtonColor: string;
+  successColor: string;
+  panelBgColor: string;
+  titleColor: string;
 }
 
 export interface FooterConfig {
@@ -245,6 +244,7 @@ export interface SiteShellContent {
 }
 
 export interface TargetCompanyContent {
+  theme: ThemeConfig;
   proposal: HeroProposalConfig;
   recipient: HeroPartyConfig;
 }
