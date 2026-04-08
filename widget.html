@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <script>
+    const CONFIG = {
+      BACKEND_URL: "https://widget.numbero.org",
+      ASSISTANT_ID: "<Assistant-ID>",
+      PAGE_TITLE: "<Company Name> AI Assistant",
+      BADGE_TEXT: "<Company Name>",
+      TITLE: "Talk to us.",
+      SUBTITLE: "<Subtitle or description goes here>",
+      START_BUTTON_TEXT: "Start Conversation",
+      END_BUTTON_TEXT: "End Call",
+      STATUS_READY: "Ready to assist",
+      STATUS_CONNECTED: "Assistant connected",
+      GREETING_TEXT: "<Greeting message from the assistant>",
+      CONNECTING_TEXT: "Connecting to assistant...",
+      CONNECTED_TEXT: "Connected. How can I help?",
+      AGENT_READY_TEXT: "Assistant is ready.",
+      DISCONNECTED_TEXT: "Call ended",
+      CONNECTION_FAILED_TEXT: "Connection failed. Please try again.",
+      PRIMARY_COLOR: "#E8604C",
+      ACCENT_COLOR: "#E8604C",
+      ACCENT_COLOR_HOVER: "#D14E3B",
+      END_BUTTON_COLOR: "#ef4444",
+      END_BUTTON_HOVER: "#dc2626",
+      TEXT_COLOR: "#ffffff",
+      SUBTITLE_COLOR: "#94a3b8",
+      SUCCESS_COLOR: "#10B981",
+    };
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice AI Widget</title>
+
+  <style>
+    :root {
+      --primary-color: #E8604C;
+      --accent-color: #E8604C;
+      --accent-color-hover: #D14E3B;
+      --end-button-color: #ef4444;
+      --end-button-hover: #dc2626;
+      --text-color: #ffffff;
+      --subtitle-color: #94a3b8;
+      --success-color: #10B981;
+      --bg-dark: #0F2A45;
+      --card-bg: #132F4C;
+      --card-border: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: transparent;
+    }
+
+    .widget-container {
+      width: 100%;
+      height: 100%;
+      background: var(--card-bg);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gradient-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(232, 96, 76, 0.15) 0%, transparent 60%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Header */
+    .header {
+      position: relative;
+      z-index: 10;
+      padding: 20px 24px 0;
+      flex-shrink: 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .badge-logo {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-color);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--subtitle-color);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    /* Visualizer - flexible center area */
+    .visualizer-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      position: relative;
+      z-index: 10;
+      min-height: 0;
+    }
+
+    .pulsing-circle-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+      height: 100px;
+    }
+
+    .ripple {
+      position: absolute;
+      inset: 0;
+      background: color-mix(in srgb, var(--primary-color) 20%, transparent);
+      border-radius: 50%;
+      opacity: 0;
+      transform: scale(1);
+    }
+
+    .ripple.active {
+      animation: ripple-animation 2s ease-out infinite;
+    }
+
+    .ripple.active.delayed {
+      animation-delay: 0.5s;
+    }
+
+    @keyframes ripple-animation {
+      0% { opacity: 0; transform: scale(1); }
+      50% { opacity: 0.4; }
+      100% { opacity: 0; transform: scale(2); }
+    }
+
+    .ripple.delayed.active {
+      animation: ripple-animation-small 2s ease-out infinite;
+      animation-delay: 0.5s;
+    }
+
+    @keyframes ripple-animation-small {
+      0% { opacity: 0; transform: scale(1); }
+      50% { opacity: 0.4; }
+      100% { opacity: 0; transform: scale(1.5); }
+    }
+
+    .core-circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #D14E3B 0%, #E8604C 50%, #F4897A 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 10;
+      box-shadow: 0 0 24px 6px rgba(232, 96, 76, 0.3);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .core-circle.active {
+      animation: pulse-circle 1.5s ease-in-out infinite;
+      box-shadow: 0 0 40px 12px rgba(232, 96, 76, 0.5);
+    }
+
+    @keyframes pulse-circle {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .visualizer-bars {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      height: 36px;
+    }
+
+    .bar {
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 9999px;
+      opacity: 0.9;
+      transition: height 0.3s ease;
+    }
+
+    .bar.active {
+      animation: bar-animation 0.6s ease-in-out infinite alternate;
+    }
+
+    .bar:nth-child(1).active { animation-delay: 0.1s; }
+    .bar:nth-child(2).active { animation-delay: 0.2s; }
+    .bar:nth-child(3).active { animation-delay: 0.3s; }
+    .bar:nth-child(4).active { animation-delay: 0.4s; }
+    .bar:nth-child(5).active { animation-delay: 0.5s; }
+
+    @keyframes bar-animation {
+      0% { height: 8px; }
+      100% { height: 28px; }
+    }
+
+    .status-badge {
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .status-badge.disconnected {
+      background: rgba(255, 255, 255, 0.05);
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .status-badge.connected {
+      background: rgba(34, 197, 94, 0.1);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.25);
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .status-dot.disconnected { background: #94a3b8; }
+
+    .status-dot.connected {
+      background: var(--success-color);
+      animation: pulse-dot 1s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Action area - pinned to bottom */
+    .action-area {
+      padding: 16px 24px 20px;
+      position: relative;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.2);
+      border-top: 1px solid var(--card-border);
+      backdrop-filter: blur(10px);
+      flex-shrink: 0;
+    }
+
+    .transcript-area {
+      text-align: center;
+      margin-bottom: 16px;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 8px;
+    }
+
+    .transcript-text {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-color);
+      transition: opacity 0.3s ease;
+      line-height: 1.4;
+    }
+
+    .call-button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .call-button:hover {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .call-button:active { transform: scale(0.98); }
+
+    .call-button.start {
+      background: linear-gradient(135deg, #E8604C 0%, #D14E3B 100%);
+      color: white;
+    }
+
+    .call-button.start:hover {
+      background: linear-gradient(135deg, #D14E3B 0%, #B8422F 100%);
+    }
+
+    .call-button.end { background: var(--end-button-color); color: white; }
+    .call-button.end:hover { background: var(--end-button-hover); }
+
+    .call-button svg { width: 18px; height: 18px; }
+
+    .error-message {
+      margin-top: 12px;
+      padding: 10px;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 10px;
+      color: #f87171;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    #audioOutput { display: none; }
+  </style>
+</head>
+
+<body>
+  <audio id="audioOutput" autoplay></audio>
+
+  <div class="widget-container">
+    <div class="gradient-bg"></div>
+
+    <div class="header">
+      <div class="badge">
+        <img src="logo.webp" alt="Company Name" class="badge-logo">
+      </div>
+      <h1 class="title">Talk to us.</h1>
+      <p class="subtitle">Get instant answers about buying, selling, and conveyancing. Speak to our AI assistant now.</p>
+    </div>
+
+    <div class="visualizer-area">
+      <div class="pulsing-circle-container">
+        <div class="ripple" id="ripple1"></div>
+        <div class="ripple delayed" id="ripple2"></div>
+
+        <div class="core-circle" id="coreCircle">
+          <div class="visualizer-bars">
+            <div class="bar" id="bar1"></div>
+            <div class="bar" id="bar2"></div>
+            <div class="bar" id="bar3"></div>
+            <div class="bar" id="bar4"></div>
+            <div class="bar" id="bar5"></div>
+          </div>
+        </div>
+
+        <div class="status-badge disconnected" id="statusBadge">
+          <div class="status-dot disconnected" id="statusDot"></div>
+          <span id="statusText">Ready to connect</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-area">
+      <div class="transcript-area">
+        <p class="transcript-text" id="transcriptText">Hi, how can I help you today?</p>
+      </div>
+
+      <button class="call-button start" id="callButton" onclick="toggleCall()">
+        <svg id="micIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+          <line x1="12" x2="12" y1="19" y2="22" />
+        </svg>
+        <svg id="phoneIcon" style="display: none;" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+        <span id="buttonText">Start Conversation</span>
+      </button>
+
+      <div class="error-message" id="errorMessage" style="display: none;"></div>
+    </div>
+  </div>
+
+  <script src="widget-bundle.js"></script>
+
+  <script>
+    const { PipecatClient, RTVIEvent, WebSocketTransport } = window;
+
+    let isConnected = false;
+    let pipecatClient = null;
+    const audioElement = document.getElementById('audioOutput');
+
+    const callButton = document.getElementById('callButton');
+    const buttonText = document.getElementById('buttonText');
+    const micIcon = document.getElementById('micIcon');
+    const phoneIcon = document.getElementById('phoneIcon');
+    const transcriptText = document.getElementById('transcriptText');
+    const statusBadge = document.getElementById('statusBadge');
+    const statusDot = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
+    const coreCircle = document.getElementById('coreCircle');
+    const ripple1 = document.getElementById('ripple1');
+    const ripple2 = document.getElementById('ripple2');
+    const bars = [
+      document.getElementById('bar1'),
+      document.getElementById('bar2'),
+      document.getElementById('bar3'),
+      document.getElementById('bar4'),
+      document.getElementById('bar5')
+    ];
+    const errorMessage = document.getElementById('errorMessage');
+
+    function applyBranding() {
+      const root = document.documentElement;
+      root.style.setProperty('--primary-color', CONFIG.PRIMARY_COLOR);
+      root.style.setProperty('--accent-color', CONFIG.ACCENT_COLOR);
+      root.style.setProperty('--accent-color-hover', CONFIG.ACCENT_COLOR_HOVER);
+      root.style.setProperty('--end-button-color', CONFIG.END_BUTTON_COLOR);
+      root.style.setProperty('--end-button-hover', CONFIG.END_BUTTON_HOVER);
+      root.style.setProperty('--text-color', CONFIG.TEXT_COLOR);
+      root.style.setProperty('--subtitle-color', CONFIG.SUBTITLE_COLOR);
+      root.style.setProperty('--success-color', CONFIG.SUCCESS_COLOR);
+
+      document.title = CONFIG.PAGE_TITLE;
+      document.querySelector('.title').textContent = CONFIG.TITLE;
+      document.querySelector('.subtitle').textContent = CONFIG.SUBTITLE;
+      buttonText.textContent = CONFIG.START_BUTTON_TEXT;
+      statusText.textContent = CONFIG.STATUS_READY;
+      transcriptText.textContent = CONFIG.GREETING_TEXT;
+    }
+
+    applyBranding();
+
+    function updateUI(connected) {
+      isConnected = connected;
+
+      if (connected) {
+        callButton.className = 'call-button end';
+        buttonText.textContent = CONFIG.END_BUTTON_TEXT;
+        micIcon.style.display = 'none';
+        phoneIcon.style.display = 'block';
+
+        statusBadge.className = 'status-badge connected';
+        statusDot.className = 'status-dot connected';
+        statusText.textContent = CONFIG.STATUS_CONNECTED;
+
+        coreCircle.classList.add('active');
+        ripple1.classList.add('active');
+        ripple2.classList.add('active');
+        bars.forEach(bar => bar.classList.add('active'));
+      } else {
+        callButton.className = 'call-button start';
+        buttonText.textContent = CONFIG.START_BUTTON_TEXT;
+        micIcon.style.display = 'block';
+        phoneIcon.style.display = 'none';
+
+        statusBadge.className = 'status-badge disconnected';
+        statusDot.className = 'status-dot disconnected';
+        statusText.textContent = CONFIG.STATUS_READY;
+
+        coreCircle.classList.remove('active');
+        ripple1.classList.remove('active');
+        ripple2.classList.remove('active');
+        bars.forEach(bar => bar.classList.remove('active'));
+      }
+    }
+
+    function setTranscript(text) {
+      transcriptText.textContent = text;
+    }
+
+    function showError(message) {
+      errorMessage.textContent = message;
+      errorMessage.style.display = 'block';
+      setTimeout(() => {
+        errorMessage.style.display = 'none';
+      }, 5000);
+    }
+
+    async function connect() {
+      try {
+        errorMessage.style.display = 'none';
+
+        const config = {
+          transport: new WebSocketTransport(),
+          enableMic: true,
+          enableCam: false,
+          callbacks: {
+            onConnected: () => {
+              updateUI(true);
+              setTranscript(CONFIG.CONNECTED_TEXT);
+            },
+            onDisconnected: () => {
+              updateUI(false);
+              setTranscript(CONFIG.DISCONNECTED_TEXT);
+            },
+            onBotReady: () => {
+              setTranscript(CONFIG.AGENT_READY_TEXT);
+            },
+            onUserTranscript: (data) => {
+              if (data.final) {
+                const msg = `You: ${data.text}`;
+                setTranscript(msg);
+                console.log(msg);
+              }
+            },
+            onBotTranscript: (data) => {
+              const msg = `Agent: ${data.text}`;
+              setTranscript(msg);
+              console.log(msg);
+            },
+            onError: (err) => {
+              console.error("Pipecat error:", err);
+              showError(err?.message || "Unknown error");
+            }
+          }
+        };
+
+        const client = new PipecatClient(config);
+        pipecatClient = client;
+
+        client.on(RTVIEvent.TrackStarted, (track, participant) => {
+          if (!participant?.local && track.kind === "audio" && audioElement) {
+            const stream = new MediaStream([track]);
+            audioElement.srcObject = stream;
+          }
+        });
+
+        setTranscript("Initializing devices...");
+        await client.initDevices();
+
+        setTranscript(CONFIG.CONNECTING_TEXT);
+        const response = await fetch(`${CONFIG.BACKEND_URL}/frontend/connect`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ assistant_id: CONFIG.ASSISTANT_ID })
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to get WebSocket URL: ${response.status}`);
+        }
+
+        const { ws_url } = await response.json();
+        await client.connect({ wsUrl: ws_url });
+
+      } catch (err) {
+        console.error("Connection error:", err);
+        showError(err.message || "Connection failed");
+        updateUI(false);
+        setTranscript(CONFIG.CONNECTION_FAILED_TEXT);
+      }
+    }
+
+    async function disconnect() {
+      if (pipecatClient) {
+        try {
+          await pipecatClient.disconnect();
+        } catch (err) {
+          console.error("Disconnect error:", err);
+        }
+        pipecatClient = null;
+        updateUI(false);
+      }
+    }
+
+    async function toggleCall() {
+      if (isConnected) {
+        await disconnect();
+      } else {
+        await connect();
+      }
+    }
+
+    window.addEventListener('beforeunload', () => {
+      if (pipecatClient) {
+        pipecatClient.disconnect().catch(console.error);
+      }
+    });
+  </script>
+</body>
+
+</html>

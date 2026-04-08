@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "LYRIQ | AI Infrastructure for BPOs and Enterprises",
+    "description": "LYRIQ brings AI and operational intelligence into BPO delivery so enterprises improve outcomes and providers can grow into broader, higher-value services."
+  },
+  "announcement": {
+    "label": "AI Infrastructure",
+    "text": "Enterprise AI and operational intelligence designed to run inside BPO delivery."
+  },
+  "brand": {
+    "name": "LYRIQ",
+    "tagline": "AI infrastructure for BPOs and enterprises.",
+    "cta": {
+      "label": "Request a demo",
+      "href": "#hero"
+    }
+  },
+  "navigation": [
+    {
+      "label": "Hero",
+      "href": "#hero"
+    },
+    {
+      "label": "Agent",
+      "action": "open_agent"
+    }
+  ],
+  "footer": {
+    "caption": "This template uses a split-content model so sender branding, target-company data, shared page chrome, and Pipecat settings can all be managed independently.",
+    "copyright": "© 2026 LYRIQ proposal workspace template."
+  },
+  "theme": {
+    "background": "#000000",
+    "backgroundSecondary": "#0a0a0a",
+    "surface": "rgba(15, 15, 15, 0.82)",
+    "surfaceStrong": "#09090b",
+    "text": "#ffffff",
+    "muted": "#bfbfbf",
+    "primary": "#f752ae",
+    "primarySoft": "rgba(247, 82, 174, 0.18)",
+    "accent": "#c82882",
+    "border": "rgba(255, 255, 255, 0.08)"
+  },
+  "hero": {
+    "id": "hero",
+    "type": "hero",
+    "layout": "proposal-workspace",
+    "eyebrow": "Proposal workspace",
+    "title": "LYRIQ Enterprise Proposal",
+    "description": "Use this hero as a proposal surface: a branded banner up top, a live document preview from a Cloudinary URL on the left, and separate sender and recipient company panels on the right.",
+    "primaryCta": {
+      "label": "Open proposal",
+      "href": "#hero"
+    },
+    "secondaryCta": {
+      "label": "Visit LYRIQ",
+      "href": "https://lyriq.ai"
+    }
+  },
+  "sections": []
+}

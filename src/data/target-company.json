@@ -1,0 +1,33 @@
+{
+  "proposal": {
+    "label": "Proposal",
+    "title": "Tailored proposal review surface",
+    "description": "The hero follows the wireframe layout you shared: banner first, proposal panel second, sender and recipient company cards on the right, and the voice agent floating at the bottom-right.",
+    "documentLabel": "Proposal",
+    "documentTitle": "Target company proposal",
+    "documentDescription": "Swap the URL below with a Cloudinary-hosted document. PDFs render directly here, and Office documents can use the embedded viewer fallback.",
+    "documentUrl": "https://res.cloudinary.com/<cloud-name>/raw/upload/v1/proposals/target-company-proposal.pdf",
+    "documentType": "pdf",
+    "openDocumentCta": {
+      "label": "Open source document",
+      "href": "https://res.cloudinary.com/<cloud-name>/raw/upload/v1/proposals/target-company-proposal.pdf"
+    },
+    "knowledgeBaseLabel": "PDF Document Content"
+  },
+  "recipient": {
+    "label": "Receiving company",
+    "name": "Target Company",
+    "logoUrl": "<Target company logo URL>",
+    "logoAlt": "Target company logo",
+    "website": "target-company.com",
+    "industry": "Enterprise services",
+    "contactName": "Decision Maker",
+    "contactRole": "Operations lead",
+    "summary": "Use this card strictly for recipient-specific account context so proposal details, target-company facts, and logo updates stay independent from LYRIQ branding.",
+    "highlights": [
+      "Replace the sample logo URL with the receiving company's real logo.",
+      "Use a Cloudinary document URL for the proposal preview panel above.",
+      "Keep company facts here so the page stays account-specific without affecting sender content."
+    ]
+  }
+}

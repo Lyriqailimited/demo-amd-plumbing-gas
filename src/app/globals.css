@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, color-mix(in srgb, var(--page-primary) 18%, transparent), transparent 30%),
+    linear-gradient(180deg, var(--page-bg), var(--page-bg-secondary));
+  color: var(--page-text);
+}
+
+* {
+  border-color: var(--page-border);
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), sans-serif;
+  }
+}
+
+@layer components {
+  .section-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .panel {
+    @apply rounded-[28px] border border-white/10 bg-white/5 shadow-glow backdrop-blur-xl;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 24px 80px rgba(5, 10, 25, 0.45);
+  }
+
+  .section-eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[color:var(--page-accent)];
+  }
+
+  .section-copy {
+    @apply text-base leading-7 text-[color:var(--page-muted)] sm:text-lg;
+  }
+
+  .cta-button {
+    @apply inline-flex items-center justify-center rounded-full border px-5 py-3 text-sm font-semibold transition duration-300 ease-soft;
+  }
+
+  .cta-button-primary {
+    @apply cta-button border-transparent text-white;
+    background: linear-gradient(135deg, var(--page-primary), var(--page-accent));
+  }
+
+  .cta-button-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 18px 48px color-mix(in srgb, var(--page-primary) 24%, transparent);
+  }
+
+  .cta-button-secondary {
+    @apply cta-button border-white/10 bg-white/5 text-white hover:bg-white/10;
+  }
+}

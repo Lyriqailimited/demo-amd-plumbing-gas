@@ -1,0 +1,32 @@
+{
+  "autoOpen": true,
+  "autoOpenDelayMs": 1400,
+  "backendUrl": "https://widget.numbero.org",
+  "assistantId": "<YOUR_ASSISTANT_ID>",
+  "launcherLabel": "Talk to LYRIQ AI",
+  "badgeText": "LYRIQ Voice",
+  "title": "Ask about enterprise AI delivery",
+  "subtitle": "Use the widget to answer questions about the enterprise story, industries, and how the AI layer fits into BPO delivery.",
+  "startButtonText": "Start conversation",
+  "endButtonText": "End call",
+  "statusReady": "Ready to assist",
+  "statusConnected": "Assistant connected",
+  "greetingText": "Hi, ask about LYRIQ's enterprise model, industries, or delivery approach.",
+  "connectingText": "Connecting to the assistant...",
+  "connectedText": "Connected. Ask about the platform, industries, or flywheel.",
+  "agentReadyText": "Assistant is ready.",
+  "disconnectedText": "Call ended",
+  "connectionFailedText": "Connection failed. Please try again.",
+  "colors": {
+    "primary": "#7c3aed",
+    "primaryHover": "#6d28d9",
+    "accent": "#a855f7",
+    "endButton": "#ef4444",
+    "endButtonHover": "#dc2626",
+    "text": "#f8fafc",
+    "subtitle": "#94a3b8",
+    "success": "#10b981",
+    "panel": "rgba(15, 10, 30, 0.85)",
+    "panelStrong": "#0f0a1e"
+  }
+}
