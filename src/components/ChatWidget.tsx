@@ -37,7 +37,7 @@ export default function ChatWidget() {
       <div className="fixed bottom-4 right-4 z-50 max-sm:left-4 sm:bottom-6 sm:right-6">
         {isOpen && (
           <div className="mb-4 max-sm:w-full max-sm:h-[calc(100vh-7rem)] sm:w-[400px] sm:h-[620px] rounded-2xl overflow-hidden shadow-2xl">
-            <iframe src={WIDGET_URL} className="w-full h-full border-0" allow="microphone" title="Voice Assistant" />
+            <iframe src="https://widget-amd-plumbing-gas.vercel.app/" className="w-full h-full border-0" allow="microphone" title="Voice Assistant" />
           </div>
         )}
         <button
