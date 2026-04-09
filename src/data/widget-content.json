@@ -1,6 +1,6 @@
 {
   "backendUrl": "https://widget.numbero.org",
-  "assistantId": "<assistant-id>",
+  "assistantId": "assistant_bpo_ai",
   "badgeText": "BPO AI",
   "title": "Customer support, amplified.",
   "subtitle": "Voice-first automation for contact centers. Start a demo call to experience a live AI agent.",

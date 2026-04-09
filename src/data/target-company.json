@@ -1,33 +1,45 @@
 {
   "proposal": {
     "label": "Proposal",
-    "title": "Tailored proposal review surface",
-    "description": "The hero follows the wireframe layout you shared: banner first, proposal panel second, sender and recipient company cards on the right, and the voice agent floating at the bottom-right.",
-    "documentLabel": "Proposal",
-    "documentTitle": "Target company proposal",
-    "documentDescription": "Swap the URL below with a Cloudinary-hosted document. PDFs render directly here, and Office documents can use the embedded viewer fallback.",
-    "documentUrl": "https://res.cloudinary.com/<cloud-name>/raw/upload/v1/proposals/target-company-proposal.pdf",
-    "documentType": "pdf",
+    "title": "AMD Plumbing & Gas Proposal",
+    "description": "Professional plumbing and gas services for Brisbane homeowners with 330+ five-star reviews, 24/7 availability, and upfront fixed pricing.",
+    "documentLabel": "Proposal Document",
+    "documentTitle": "AMD Plumbing & Gas — Your trusted local Brisbane Plumber",
+    "documentDescription": "AI receptionist proposal for AMD Plumbing & Gas covering 24/7 call handling, booking automation, and customer engagement.",
+    "documentUrl": "https://amdplumbing.com.au/",
+    "documentType": "auto",
     "openDocumentCta": {
-      "label": "Open source document",
-      "href": "https://res.cloudinary.com/<cloud-name>/raw/upload/v1/proposals/target-company-proposal.pdf"
+      "label": "Open proposal",
+      "href": "https://amdplumbing.com.au/"
     },
-    "knowledgeBaseLabel": "PDF Document Content"
+    "knowledgeBaseLabel": "Proposal Document"
   },
   "recipient": {
     "label": "Receiving company",
-    "name": "Target Company",
-    "logoUrl": "<Target company logo URL>",
-    "logoAlt": "Target company logo",
-    "website": "target-company.com",
-    "industry": "Enterprise services",
-    "contactName": "Decision Maker",
-    "contactRole": "Operations lead",
-    "summary": "Use this card strictly for recipient-specific account context so proposal details, target-company facts, and logo updates stay independent from LYRIQ branding.",
+    "name": "AMD Plumbing & Gas",
+    "logoUrl": "https://amdplumbing.com.au/wp-content/uploads/2021/07/amd-icon-trans.png",
+    "logoAlt": "AMD Plumbing & Gas logo",
+    "website": "https://amdplumbing.com.au/",
+    "industry": "Plumbing & Gas Services",
+    "contactName": "Andre",
+    "contactRole": "Operations Lead",
+    "summary": "Professional plumbing and gas services for Brisbane homeowners. 330+ five-star reviews. Available 24/7 including weekends. Upfront fixed pricing.",
     "highlights": [
-      "Replace the sample logo URL with the receiving company's real logo.",
-      "Use a Cloudinary document URL for the proposal preview panel above.",
-      "Keep company facts here so the page stays account-specific without affecting sender content."
+      "330+ five-star Google reviews with 24/7 emergency availability",
+      "Full-service plumbing, gas fitting, and hot water systems",
+      "Upfront fixed pricing with no hidden call-out fees"
     ]
+  },
+  "theme": {
+    "background": "#000000",
+    "backgroundSecondary": "#0a0a0a",
+    "surface": "rgba(15, 15, 15, 0.82)",
+    "surfaceStrong": "#09090b",
+    "text": "#ffffff",
+    "muted": "#bfbfbf",
+    "primary": "#003366",
+    "primarySoft": "rgba(0, 51, 102, 0.18)",
+    "accent": "#FF6600",
+    "border": "rgba(255, 255, 255, 0.08)"
   }
 }

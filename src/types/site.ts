@@ -73,6 +73,19 @@ export interface HeroSection {
   recipient: HeroPartyConfig;
 }
 
+export interface TestimonialsSection {
+  id: string;
+  type: "testimonials";
+  eyebrow: string;
+  headline: string;
+  description: string;
+  items: Array<{
+    text: string;
+    name: string;
+    role: string;
+  }>;
+}
+
 export type SupplementalSection =
   | MetricsSection
   | BentoSection
@@ -80,7 +93,8 @@ export type SupplementalSection =
   | ShowcaseSection
   | PricingSection
   | FaqSection
-  | CtaSection;
+  | CtaSection
+  | TestimonialsSection;
 
 export interface MetricsSection {
   id: string;
@@ -188,41 +202,9 @@ export type PageSection =
   | ShowcaseSection
   | PricingSection
   | FaqSection
-  | CtaSection;
+  | CtaSection
+  | TestimonialsSection;
 
-export interface WidgetConfig {
-  backendUrl: string;
-  assistantId: string;
-  badgeText: string;
-  title: string;
-  subtitle: string;
-  startButtonText: string;
-  endButtonText: string;
-  statusReady: string;
-  statusConnected: string;
-  greetingText: string;
-  connectingText: string;
-  connectedText: string;
-  agentReadyText: string;
-  disconnectedText: string;
-  connectionFailedText: string;
-  initializingMicText: string;
-  initializingDevicesText: string;
-  userTranscriptPrefix: string;
-  agentTranscriptPrefix: string;
-  logoUrl: string;
-  logoAlt: string;
-  fabAriaLabel: string;
-  scriptPath: string;
-  autoOpen: boolean;
-  autoOpenDelayMs: number;
-  primaryColor: string;
-  accentColor: string;
-  endButtonColor: string;
-  successColor: string;
-  panelBgColor: string;
-  titleColor: string;
-}
 
 export interface FooterConfig {
   caption: string;
@@ -260,5 +242,4 @@ export interface SiteContent {
   footer: FooterConfig;
   theme: ThemeConfig;
   sections: PageSection[];
-  widget: WidgetConfig;
 }

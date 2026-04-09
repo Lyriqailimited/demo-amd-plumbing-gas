@@ -4,8 +4,8 @@ import {
   SiteFooter,
   SiteHeader,
 } from "@/components/page-sections";
-import VoiceWidget from "../../VoiceWidget";
 import { getSiteContent, getThemeStyle } from "@/lib/site-content";
+import ChatWidget from "@/components/ChatWidget";
 
 export default function HomePage() {
   const siteContent = getSiteContent();
@@ -23,7 +23,7 @@ export default function HomePage() {
       />
       <PageSections sections={siteContent.sections} />
       <SiteFooter footer={siteContent.footer} />
-      <VoiceWidget config={siteContent.widget} />
+      <ChatWidget />
     </main>
   );
 }

@@ -1,33 +1,24 @@
 {
   "meta": {
-    "title": "LYRIQ | AI Infrastructure for BPOs and Enterprises",
-    "description": "LYRIQ brings AI and operational intelligence into BPO delivery so enterprises improve outcomes and providers can grow into broader, higher-value services."
+    "title": "AMD Plumbing & Gas | AI Receptionist Demo",
+    "description": "Professional plumbing and gas services for Brisbane homeowners. 330+ five-star reviews. Available 24/7 including weekends."
   },
   "announcement": {
-    "label": "AI Infrastructure",
-    "text": "Enterprise AI and operational intelligence designed to run inside BPO delivery."
+    "label": "AI Demo",
+    "text": "Meet the AI receptionist that answers calls, books jobs, and helps customers 24/7 for AMD Plumbing & Gas."
   },
   "brand": {
     "name": "LYRIQ",
     "tagline": "AI infrastructure for BPOs and enterprises.",
-    "cta": {
-      "label": "Request a demo",
-      "href": "#hero"
-    }
+    "cta": { "label": "Request a demo", "href": "#hero" }
   },
   "navigation": [
-    {
-      "label": "Hero",
-      "href": "#hero"
-    },
-    {
-      "label": "Agent",
-      "action": "open_agent"
-    }
+    { "label": "Hero", "href": "#hero" },
+    { "label": "Agent", "action": "open_agent" }
   ],
   "footer": {
-    "caption": "This template uses a split-content model so sender branding, target-company data, shared page chrome, and Pipecat settings can all be managed independently.",
-    "copyright": "© 2026 LYRIQ proposal workspace template."
+    "caption": "Powered by LYRIQ AI — AI infrastructure for BPOs and enterprises.",
+    "copyright": "© 2026 LYRIQ"
   },
   "theme": {
     "background": "#000000",
@@ -45,17 +36,72 @@
     "id": "hero",
     "type": "hero",
     "layout": "proposal-workspace",
-    "eyebrow": "Proposal workspace",
-    "title": "LYRIQ Enterprise Proposal",
-    "description": "Use this hero as a proposal surface: a branded banner up top, a live document preview from a Cloudinary URL on the left, and separate sender and recipient company panels on the right.",
-    "primaryCta": {
-      "label": "Open proposal",
-      "href": "#hero"
-    },
-    "secondaryCta": {
-      "label": "Visit LYRIQ",
-      "href": "https://lyriq.ai"
-    }
+    "eyebrow": "Proposal",
+    "title": "AMD Plumbing & Gas — AI Receptionist",
+    "description": "Your trusted local Brisbane Plumber",
+    "primaryCta": { "label": "Open proposal", "href": "#hero" },
+    "secondaryCta": { "label": "Visit LYRIQ", "href": "https://lyriq.ai" }
   },
-  "sections": []
+  "sections": [
+    {
+      "id": "metrics",
+      "type": "metrics",
+      "items": [
+        { "value": "330+", "label": "Five-star Google reviews" },
+        { "value": "24/7", "label": "Emergency availability" },
+        { "value": "10+", "label": "Years of experience" },
+        { "value": "100%", "label": "Upfront fixed pricing" }
+      ]
+    },
+    {
+      "id": "bento",
+      "type": "bento",
+      "eyebrow": "Plumbing & Gas",
+      "headline": "AI-powered call handling for every plumbing emergency",
+      "description": "Never miss a customer call again. An AI receptionist that books jobs, answers FAQs, and routes emergencies — around the clock.",
+      "items": [
+        { "icon": "Sparkles", "accent": "Intelligent", "title": "Smart call routing", "description": "Instantly triages emergency vs. routine calls and routes to the right team member or books directly.", "span": "wide" },
+        { "icon": "Mic", "accent": "Voice AI", "title": "Natural conversations", "description": "Customers speak naturally about their plumbing issue and the AI understands context, urgency, and location.", "span": "normal" },
+        { "icon": "ShieldCheck", "accent": "Reliable", "title": "Always available", "description": "24/7 coverage means no missed calls during after-hours emergencies, weekends, or holidays.", "span": "normal" },
+        { "icon": "Rocket", "accent": "Fast", "title": "Instant booking", "description": "Automatically schedules appointments and sends confirmations without any manual follow-up.", "span": "normal" }
+      ]
+    },
+    {
+      "id": "showcase",
+      "type": "showcase",
+      "eyebrow": "Use Cases",
+      "headline": "How AMD Plumbing & Gas benefits from AI reception",
+      "description": "From burst pipes at midnight to routine maintenance bookings, the AI receptionist handles it all professionally.",
+      "items": [
+        { "title": "Emergency call triage", "description": "AI identifies urgent plumbing emergencies like burst pipes and gas leaks, immediately escalating to on-call plumbers.", "tags": ["Emergency", "24/7"] },
+        { "title": "Automated job booking", "description": "Customers book hot water repairs, drain cleaning, and inspections through natural conversation — no hold times.", "tags": ["Booking", "Scheduling"] },
+        { "title": "FAQ and quote requests", "description": "Handles common questions about pricing, service areas, and licensing while capturing leads for custom quotes.", "tags": ["Lead capture", "Customer service"] }
+      ]
+    },
+    {
+      "id": "testimonials",
+      "type": "testimonials",
+      "eyebrow": "Reviews",
+      "headline": "What Brisbane homeowners say",
+      "description": "330+ five-star Google reviews from satisfied customers across Brisbane.",
+      "items": [
+        { "text": "Called at 10pm with a burst pipe and AMD had someone out within the hour. Professional, friendly, and fixed it fast.", "name": "Sarah M.", "role": "Brisbane homeowner" },
+        { "text": "Upfront pricing with no surprises. Andre and the team replaced our hot water system same day. Highly recommend.", "name": "James R.", "role": "Property owner" },
+        { "text": "Best plumber we have ever used. They did a full CCTV drain inspection and explained everything clearly. Fair pricing too.", "name": "Michelle T.", "role": "Brisbane homeowner" },
+        { "text": "Blocked drain on a Sunday morning — they answered straight away and had it sorted before lunch. Lifesavers.", "name": "David K.", "role": "Local resident" },
+        { "text": "Used AMD for a pre-purchase plumbing inspection. Thorough report that saved us from buying a money pit. Thank you!", "name": "Lisa W.", "role": "First home buyer" },
+        { "text": "Gas fitting work done to the highest standard. Licensed, insured, and genuinely care about doing the job right.", "name": "Mark P.", "role": "Commercial client" }
+      ]
+    },
+    {
+      "id": "cta",
+      "type": "cta",
+      "eyebrow": "Ready?",
+      "title": "See the AI receptionist in action",
+      "description": "Talk directly to the AI assistant built for AMD Plumbing & Gas. No sign-up required.",
+      "primaryCta": { "label": "Start the demo", "href": "#hero" },
+      "secondaryCta": { "label": "Visit LYRIQ", "href": "https://lyriq.ai" },
+      "note": "Powered by LYRIQ AI — enterprise voice AI infrastructure."
+    }
+  ]
 }

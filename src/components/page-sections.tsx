@@ -32,7 +32,10 @@ import type {
   PricingSection,
   ProcessSection,
   ShowcaseSection,
+  TestimonialsSection,
 } from "@/types/site";
+import { SparklesCore } from "@/components/ui/sparkles";
+import { TestimonialsColumn } from "@/components/testimonials-columns-1";
 
 const iconMap = {
   FileJson,
@@ -314,7 +317,16 @@ function HeroSectionView({ section }: { section: HeroSection }) {
                 background:
                   "radial-gradient(circle at top, color-mix(in srgb, var(--page-primary) 14%, transparent), transparent 58%)",
               }}
-            />
+            >
+              <SparklesCore
+                background="transparent"
+                minSize={0.4}
+                maxSize={1.4}
+                particleDensity={40}
+                className="h-full w-full"
+                particleColor="#ffffff"
+              />
+            </div>
             <div className="relative mx-auto max-w-4xl">
               <span className="section-eyebrow">{section.eyebrow}</span>
               <h1 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
@@ -694,6 +706,35 @@ function FaqSectionView({ section }: { section: FaqSection }) {
   );
 }
 
+function TestimonialsSectionView({ section }: { section: TestimonialsSection }) {
+  const testimonialData = section.items.map((item) => ({
+    text: item.text,
+    image: "",
+    name: item.name,
+    role: item.role,
+  }));
+
+  const third = Math.ceil(testimonialData.length / 3);
+  const col1 = testimonialData.slice(0, third);
+  const col2 = testimonialData.slice(third, third * 2);
+  const col3 = testimonialData.slice(third * 2);
+
+  return (
+    <section id={section.id} className="section-shell py-16 sm:py-20">
+      <SectionIntro
+        eyebrow={section.eyebrow}
+        headline={section.headline}
+        description={section.description}
+      />
+      <div className="mt-10 flex justify-center gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[740px] overflow-hidden">
+        <TestimonialsColumn testimonials={col1} duration={15} className="hidden md:block" />
+        <TestimonialsColumn testimonials={col2} duration={19} />
+        <TestimonialsColumn testimonials={col3} duration={17} className="hidden lg:block" />
+      </div>
+    </section>
+  );
+}
+
 function CtaSectionView({ section }: { section: CtaSection }) {
   return (
     <section id={section.id} className="section-shell py-16 sm:py-20">
@@ -749,6 +790,8 @@ export function PageSections({ sections }: { sections: PageSection[] }) {
             return <PricingSectionView key={section.id} section={section} />;
           case "faq":
             return <FaqSectionView key={section.id} section={section} />;
+          case "testimonials":
+            return <TestimonialsSectionView key={section.id} section={section} />;
           case "cta":
             return <CtaSectionView key={section.id} section={section} />;
           default:
@@ -762,9 +805,18 @@ export function PageSections({ sections }: { sections: PageSection[] }) {
 export function SiteFooter({ footer }: { footer: FooterConfig }) {
   return (
     <footer className="section-shell pb-10 pt-4">
-      <div className="flex flex-col gap-4 border-t border-white/10 py-6 text-sm text-[color:var(--page-muted)] sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-2xl">{footer.caption}</p>
-        <p>{footer.copyright}</p>
+      <div className="mx-auto max-w-5xl px-6 py-8">
+        <div className="flex flex-wrap justify-center gap-6 text-sm">
+          <a href="#hero" className="text-[color:var(--page-muted)] transition hover:text-white">Home</a>
+          <a href="#metrics" className="text-[color:var(--page-muted)] transition hover:text-white">Metrics</a>
+          <a href="#bento" className="text-[color:var(--page-muted)] transition hover:text-white">Features</a>
+          <a href="#showcase" className="text-[color:var(--page-muted)] transition hover:text-white">Use Cases</a>
+          <a href="https://lyriq.ai" className="text-[color:var(--page-muted)] transition hover:text-white">LYRIQ</a>
+        </div>
+        <div className="mt-6 flex flex-col gap-4 border-t border-white/10 py-6 text-sm text-[color:var(--page-muted)] sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-2xl">{footer.caption}</p>
+          <p>{footer.copyright}</p>
+        </div>
       </div>
     </footer>
   );

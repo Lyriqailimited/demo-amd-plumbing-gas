@@ -3,7 +3,6 @@ import type { CSSProperties } from "react";
 import senderCompany from "@/data/sender-company.json";
 import siteShell from "@/data/site-shell.json";
 import targetCompany from "@/data/target-company.json";
-import widgetContent from "@/data/widget-content.json";
 import type {
   HeroSection,
   SiteContent,
@@ -30,7 +29,6 @@ export function getSiteContent() {
     footer: shell.footer,
     theme: { ...shell.theme, ...target.theme },
     sections: [heroSection, ...(shell.sections ?? [])],
-    widget: widgetContent,
   } as SiteContent;
 }
 
